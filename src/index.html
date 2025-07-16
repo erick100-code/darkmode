@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        main {
+            padding: 100px;
+        }
+
+        #toggle {
+            display: none;
+        }
+
+        .button {
+            display: inline-block;
+            height: 40px;
+            width: 100px;
+            position: relative;
+        
+            background-color: black;
+            color: white;
+            border-radius: 50px;
+            border: 1px solid rgb(0, 255, 0);
+        }
+
+        #cont {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            left: 0px;
+            width: 40px;
+            height: 38px;
+
+            background-color: white;
+            color: black;
+            border-radius: 30px;
+            
+            cursor: pointer; 
+            transition: all .5s ease;
+        }
+        
+        #cont.active {
+            transition: all .5s ease;
+            transform: translateX(58px);
+        }
+        
+
+    </style> 
+    
+    <link href="./output.css" rel="stylesheet">
+    <link href="./input.css" rel="stylesheet">
+</head>
+<body>
+    <main id="pri" class="space-y-6">
+        <h1 class="bg-amber-500 text-8xl dark:bg-black dark:text-white">teste</h1>
+        
+        <input type="checkbox" name="toggle" id="toggle">
+        <label for="toggle" class="button">
+            <div id="cont">
+                <i class="fa-solid fa-sun"></i>
+            </div>
+        </label> 
+            
+    </main>
+
+    <script>
+        // <i class="fa-solid fa-moon"></i>
+        const mai = document.getElementById('pri')
+        const inp = document.getElementById('toggle')
+        const cont = document.getElementById('cont')
+        const locale = localStorage.getItem('inpvalue')
+        inp.checked = locale === 'true'
+    
+        if (inp.checked) {   
+            mai.classList.add('dark')
+            cont.classList.add('active')
+            setTimeout(() => {
+                cont.innerHTML = '<i class="fa-solid fa-moon"></i>'
+            }, 500);
+        } else {
+            mai.classList.remove('dark')
+            cont.classList.remove('active')
+            setTimeout(() => {
+                cont.innerHTML = '<i class="fa-solid fa-sun"></i>'
+
+            }, 500);
+        }
+    
+
+        inp.addEventListener('change', () => {
+            localStorage.setItem('inpvalue', inp.checked)
+            if (inp.checked) {   
+                mai.classList.add('dark')
+                cont.classList.add('active')
+                setTimeout(() => {
+                    cont.innerHTML = '<i class="fa-solid fa-moon"></i>'
+                }, 500);
+            } else {
+                mai.classList.remove('dark')
+                cont.classList.remove('active')
+                setTimeout(() => {
+                    cont.innerHTML = '<i class="fa-solid fa-sun"></i>'
+
+                }, 500);
+            }
+        })
+
+       
+        
+    </script>
+</body>
+</html>
